@@ -1,0 +1,23 @@
+HBase can store huge amounts of data in a tabular format for extremely fast reads and writes.It mostly used in a scenario that requires regular, consistent insertion and overwriting of data.
+HBase is a type of NoSQL database and is classified as a key-value store.
+*Value is identified with a key.
+*Both key and values are Byte Array, which means binary formats can be stored easily.
+*Values are stored in key-orders.
+*Values can be quickly accessed by their keys
+*HBase is a database in which tables have no schema; column families and not columns are defined at the time of table creation.
+HBase is typically used in big data applications where data is constantly changing and needs to be processed quickly. It is commonly used for real-time access to data, such as for online transaction processing (OLTP), analytics, and search. HBase is horizontally scalable, meaning it can easily handle large amounts of data by adding more servers to a cluster.
+
+To create a HBase Database for a Hospital Management System.It include
+      1)Doctor_details
+      2)Patient_details
+Both include the id and name for the above details.By Using the HBase to insert,delete,update and search the above database.
+
+ROW                     COLUMN+CELL                     
+ 001                 column=doctor details:, timestamp=1679110202044, value=nandhu                                                       
+ 002                 column=doctor details:, timestamp=1679110238644, value=merlin                                                       
+ 003                 column=doctor details:, timestamp=1679110261538, value=manju                                                        
+ 01                  column=doctor details:, timestamp=1679125549161, value=priya                                                    
+ 101                 column=patient details:, timestamp=1679110427746, value=suriya                                                      
+ 102                 column=patient details:, timestamp=1679110470518, value=sindhu                                                      
+ 103                 column=patient details:, timestamp=1679110492187, value=sudhan                                                                                      
+ 01                  column=paitent:details:, timestamp=1679133099032, value=hari

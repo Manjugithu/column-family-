@@ -1,0 +1,68 @@
+/ # hbase shell
+2023-03-18 09:48:01,041 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+HBase Shell; enter 'help<RETURN>' for list of supported commands.
+Type "exit<RETURN>" to leave the HBase Shell
+Version 1.3.2, r1bedb5bfbb5a99067e7bc54718c3124f632b6e17, Mon Mar 19 18:47:19 UTC 2018
+CREATE TABLE:
+hbase(main):001:0> create 'hospital','doctor details','paitent details'
+0 row(s) in 1.4570 seconds
+hbase(main):002:0> scan 'hospital'
+=> Hbase::Table - hospital
+INSERT DATA:
+hbase(main):009:0> put 'hospital','01','doctor details','nandhu'
+hbase(main):009:0> put 'hospital','01','doctor details','merlin'
+hbase(main):009:0> put 'hospital','01','doctor details','manju'
+hbase(main):009:0> put 'hospital','01','doctor details','prem'
+
+hbase(main):002:0> put 'hospital','101','patient details','suriya'
+0 row(s) in 0.6240 seconds
+
+hbase(main):003:0> put 'hospital','102','patient details','sindhu'
+0 row(s) in 0.0060 seconds
+
+hbase(main):004:0> put 'hospital','103','patient details','sudhan'
+0 row(s) in 0.0090 seconds
+hbase(main):001:0> scan 'hospital'
+ROW          COLUMN+CELL                    
+ 001         column=doctor details:, timestamp=1679110202044, value=nandhu 
+ 002         column=doctor details:, timestamp=1679110238644, value=merlin 
+ 003         column=doctor details:, timestamp=1679110261538, value=manju  
+ 01          column=doctor details:name, timestamp=1679126872870, value=prem
+ 101         column=patient details:, timestamp=1679110427746, value=suriya
+ 102         column=patient details:, timestamp=1679110470518, value=sindhu
+ 103         column=patient details:, timestamp=1679110492187, value=sudhan
+7 row(s) in 0.1470 seconds
+DELETE DATA:
+hbase(main):011:0> delete 'hospital','01','doctor details'
+0 row(s) in 0.0060 seconds
+
+hbase(main):012:0> scan 'hospital'
+ROW                  COLUMN+CELL                                               
+ 001                 column=doctor details:, timestamp=1679110202044, value=nandhu                                                       
+ 002                 column=doctor details:, timestamp=1679110238644, value=merlin                                                       
+ 003                 column=doctor details:, timestamp=1679110261538, value=manju                                                        
+ 01                  column=doctor details:name, timestamp=1679125549161, value=priya                                                    
+ 101                 column=patient details:, timestamp=1679110427746, value=suriya                                                      
+ 102                 column=patient details:, timestamp=1679110470518, value=sindhu                                                      
+ 103                 column=patient details:, timestamp=1679110492187, value=sudhan                                                      
+7 row(s) in 0.0260 seconds
+UPDATE DATA:
+hbase(main):003:0> put 'hospital','01','paitent:name','hari'
+0 row(s) in 0.1130 seconds
+
+hbase(main):004:0> scan 'hospital'
+ROW                     COLUMN+CELL                     
+001                 column=doctor details:, timestamp=1679110202044, value=nandhu                                                       
+ 002                 column=doctor details:, timestamp=1679110238644, value=merlin                                                       
+ 003                 column=doctor details:, timestamp=1679110261538, value=manju                                                        
+ 01                  column=doctor details:name, timestamp=1679125549161, value=priya                                                    
+ 101                 column=patient details:, timestamp=1679110427746, value=suriya                                                      
+ 102                 column=patient details:, timestamp=1679110470518, value=sindhu                                                      
+ 103                 column=patient details:, timestamp=1679110492187, value=sudhan                                                                                      
+ 01                     column=paitent:name, timestamp=1679133099032, value=hari        
+8 row(s) in 0.1540 seconds
+SEARCH DATA:
+hbase(main):003:0> get 'hospital','002'
+COLUMN                                    CELL                                                                                                                  
+ doctor details:                          timestamp=1679110238644, value=merlin                                                                                 
+1 row(s) in 0.0220 seconds
